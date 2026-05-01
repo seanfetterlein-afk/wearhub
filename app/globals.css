@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Palette ─────────────────────────────────── */
+  --color-brown: #000000;
+  --color-brown-deep: #111111;
+  --color-cream: #ffffff;
+  --color-cream-deep: #f2f2f2;
+  --color-paper: #ffffff;
+  --color-ink: #000000;
+  --color-ink-mid: #666666;
+  --color-ink-dim: #aaaaaa;
+
+  /* ── Fonts ───────────────────────────────────── */
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-price: var(--font-bebas-neue), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-editorial: var(--font-cormorant), Georgia, serif;
+
+  /* ── Custom font sizes ───────────────────────── */
+  --text-2xs: 10px;
+  --text-2xs--line-height: 1.4;
+  --text-3xs: 9px;
+  --text-3xs--line-height: 1.4;
+
+  /* ── Custom letter-spacing ───────────────────── */
+  --tracking-wider: 0.08em;
+  --tracking-widest: 0.18em;
+  --tracking-editorial: 0.24em;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Remove 300ms tap delay on mobile + kill grey flash */
+a, button, [role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Press feedback on buttons only — not on link/card wrappers */
+button:active {
+  opacity: 0.6;
+}
+
+/* Hero shop panel overlay button */
+.shop-button {
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.shop-button:hover {
+  transform: scale(1.03);
+  filter: brightness(1.1);
+}
+
+.shop-button:active {
+  transform: scale(0.97);
+  background-color: rgba(255, 255, 255, 0.25);
+  filter: brightness(0.95);
+  transition: all 0.1s ease;
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
