@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     .from("orders")
     .select("id, seller_id, buyer_id, status, product_id, payout")
     .eq("id", orderId)
-    .single();
+    .single() as { data: any };
 
   if (!order)                       return NextResponse.json({ error: "Ordre ikke fundet." },     { status: 404 });
   if (order.seller_id !== user.id)  return NextResponse.json({ error: "Ikke autoriseret." },      { status: 403 });
