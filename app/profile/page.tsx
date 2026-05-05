@@ -90,7 +90,7 @@ export default async function ProfilePage() {
           profiles!buyer_id(username)
         `)
         .eq("seller_id", authUser.id)
-        .eq("status", "delivered")
+        .in("status", ["paid", "shipped", "delivered"])
         .order("created_at", { ascending: false });
 
       soldItems = (orderRows ?? []).map((o: any) => {

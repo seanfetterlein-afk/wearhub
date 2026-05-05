@@ -94,7 +94,7 @@ export function ShopClient({ products, totalCount, currentFilters }: ShopClientP
               {/* Mobile filter toggle */}
               <button
                 onClick={() => setDrawerOpen(true)}
-                className="lg:hidden flex items-center gap-2 border border-brown/30 px-3 h-9 font-mono text-[11px] tracking-wider text-ink-mid hover:border-brown transition-colors"
+                className="lg:hidden flex items-center gap-2 border border-brown/30 px-3 h-9 font-mono text-[11px] tracking-wider text-ink-mid hover:border-brown active:scale-95 active:opacity-70 transition-[colors,transform,opacity] duration-[0ms,80ms,80ms]"
               >
                 <SlidersHorizontal size={13} />
                 FILTRÉR
@@ -139,7 +139,7 @@ export function ShopClient({ products, totalCount, currentFilters }: ShopClientP
                   onRemove={() => updateFilters({ ...filters, priceMin: null, priceMax: null })}
                 />
               )}
-              <button onClick={clearAll} className="font-mono text-[10px] tracking-wider text-ink-dim hover:text-brown uppercase underline underline-offset-2">
+              <button onClick={clearAll} className="font-mono text-[10px] tracking-wider text-ink-dim hover:text-brown active:scale-95 active:opacity-70 uppercase underline underline-offset-2 transition-[color,transform,opacity] duration-[150ms,80ms,80ms]">
                 NULSTIL ALLE
               </button>
             </div>
@@ -167,7 +167,7 @@ export function ShopClient({ products, totalCount, currentFilters }: ShopClientP
                   INGEN ITEMS
                 </p>
                 <p className="text-ink-mid text-sm mt-3">Prøv at ændre dine filtre.</p>
-                <button onClick={clearAll} className="mt-5 font-mono text-[11px] tracking-wider text-brown underline underline-offset-2 uppercase">
+                <button onClick={clearAll} className="mt-5 font-mono text-[11px] tracking-wider text-brown active:scale-95 active:opacity-70 underline underline-offset-2 uppercase transition-[transform,opacity] duration-[80ms]">
                   Nulstil filtre
                 </button>
               </div>
@@ -185,7 +185,7 @@ function Chip({ label, onRemove }: { label: string; onRemove: () => void }) {
   return (
     <span className="inline-flex items-center gap-1.5 border border-brown/30 bg-cream px-2.5 py-1 font-mono text-[10px] tracking-wider text-brown uppercase">
       {label}
-      <button onClick={onRemove} className="hover:text-brown-deep"><X size={10} /></button>
+      <button onClick={onRemove} className="hover:text-brown-deep active:scale-90 active:opacity-70 transition-[transform,opacity] duration-[80ms]"><X size={10} /></button>
     </span>
   );
 }

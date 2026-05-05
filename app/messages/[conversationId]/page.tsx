@@ -5,13 +5,14 @@ import { Marquee } from "@/components/layout/Marquee";
 import { Navbar } from "@/components/layout/Navbar";
 import { Avatar } from "@/components/ui/Avatar";
 import { ConversationThread } from "@/components/messages/ConversationThread";
+import { OrderStatusCard } from "@/components/messages/OrderStatusCard";
 import { isSupabaseConfigured, storageUrl } from "@/lib/supabase/helpers";
 import { createClient, getUser } from "@/lib/supabase/server";
 import { markConversationRead } from "@/lib/actions/messages";
 import { DUMMY_CONVERSATIONS } from "@/lib/data/messages";
 import { CURRENT_USER } from "@/lib/data/users";
 import { formatPrice } from "@/lib/utils";
-import type { Message, Offer } from "@/types";
+import type { Message, Offer, Order, Shipment } from "@/types";
 
 interface PageProps {
   params: Promise<{ conversationId: string }>;
@@ -33,6 +34,8 @@ export default async function ConversationPage({ params }: PageProps) {
   let productImageUrl     = "";
   let messages: Message[] = [];
   let initialOffers: Record<string, Offer> = {};
+  let order: Order | null = null;
+  let shipment: Shipment | null = null;
 
   if (isSupabaseConfigured()) {
     const user = await getUser();
@@ -42,12 +45,12 @@ export default async function ConversationPage({ params }: PageProps) {
 
     const supabase = await createClient();
 
-    // Load conversation + messages + offers
+    // Load conversation + messages + offers + order
     const [{ data: conv }, { data: offersData }] = await Promise.all([
       supabase
         .from("conversations")
         .select(`
-          id, buyer_id, seller_id,
+          id, buyer_id, seller_id, order_id,
           products(id, title, brand, price, product_images(storage_path, position)),
           buyer:profiles!buyer_id(id, username, display_name, is_verified),
           seller:profiles!seller_id(id, username, display_name, is_verified),
@@ -112,6 +115,67 @@ export default async function ConversationPage({ params }: PageProps) {
       },
       {},
     );
+
+    // Fetch order + shipment if this conversation is linked to one
+    const orderId = (conv as any).order_id as string | null;
+    if (orderId) {
+      const [{ data: orderRow }, { data: shipmentRow }] = await Promise.all([
+        supabase
+          .from("orders")
+          .select("id, product_id, buyer_id, seller_id, amount, payout, status, confirmed_at, shipping_deadline, shipped_at, delivered_at, completed_at, created_at, item_price, shipping_price, platform_fee, total_price, buyer_name, buyer_address, buyer_city, buyer_zip, shipping_carrier, shipping_method")
+          .eq("id", orderId)
+          .single() as Promise<{ data: any }>,
+        supabase
+          .from("shipments")
+          .select("id, order_id, carrier, shipping_method, label_url, tracking_number, tracking_url, package_code, status, created_at, shipped_at")
+          .eq("order_id", orderId)
+          .maybeSingle() as Promise<{ data: any }>,
+      ]);
+
+      if (orderRow) {
+        order = {
+          id:               orderRow.id,
+          productId:        orderRow.product_id,
+          buyerId:          orderRow.buyer_id,
+          sellerId:         orderRow.seller_id,
+          amount:           orderRow.amount,
+          payout:           orderRow.payout,
+          status:           orderRow.status,
+          confirmedAt:      orderRow.confirmed_at      ?? null,
+          shippingDeadline: orderRow.shipping_deadline ?? null,
+          shippedAt:        orderRow.shipped_at        ?? null,
+          deliveredAt:      orderRow.delivered_at      ?? null,
+          completedAt:      orderRow.completed_at      ?? null,
+          createdAt:        orderRow.created_at,
+          itemPrice:        orderRow.item_price        ?? null,
+          shippingPrice:    orderRow.shipping_price    ?? null,
+          platformFee:      orderRow.platform_fee      ?? null,
+          totalPrice:       orderRow.total_price       ?? null,
+          buyerName:        orderRow.buyer_name        ?? null,
+          buyerAddress:     orderRow.buyer_address     ?? null,
+          buyerCity:        orderRow.buyer_city        ?? null,
+          buyerZip:         orderRow.buyer_zip         ?? null,
+          shippingCarrier:  orderRow.shipping_carrier  ?? null,
+          shippingMethod:   orderRow.shipping_method   ?? null,
+        };
+      }
+
+      if (shipmentRow) {
+        shipment = {
+          id:             shipmentRow.id,
+          orderId:        shipmentRow.order_id,
+          carrier:        shipmentRow.carrier,
+          shippingMethod: shipmentRow.shipping_method,
+          labelUrl:       shipmentRow.label_url       ?? null,
+          trackingNumber: shipmentRow.tracking_number ?? null,
+          trackingUrl:    shipmentRow.tracking_url    ?? null,
+          packageCode:    shipmentRow.package_code    ?? null,
+          status:         shipmentRow.status,
+          createdAt:      shipmentRow.created_at,
+          shippedAt:      shipmentRow.shipped_at      ?? null,
+        };
+      }
+    }
 
     // Mark incoming messages as read (fire-and-forget)
     markConversationRead(conversationId);
@@ -202,6 +266,16 @@ export default async function ConversationPage({ params }: PageProps) {
             />
           </div>
         </Link>
+
+        {/* ── Order status card (shown when this chat has an order) ────────── */}
+        {order && (
+          <OrderStatusCard
+            initialOrder={order}
+            initialShipment={shipment}
+            myId={myId}
+            isSeller={isSeller}
+          />
+        )}
 
         {/* ── Thread + input ───────────────────────────────────────────────── */}
         <ConversationThread

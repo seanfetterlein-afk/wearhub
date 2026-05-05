@@ -48,7 +48,7 @@ function TabBtn({
     <button
       onClick={onClick}
       className={cn(
-        "flex-1 py-3 font-mono text-[10px] tracking-widest uppercase relative transition-colors",
+        "flex-1 py-3 font-mono text-[10px] tracking-widest uppercase relative transition-colors active:opacity-70",
         active ? "text-ink border-b-2 border-black" : "text-ink-dim border-b border-brown/15",
       )}
     >
@@ -258,7 +258,7 @@ export function InboxClient({ conversations, notifications, myId, initialTab }: 
             <div className="px-4 py-2 flex justify-end border-b border-brown/8">
               <button
                 onClick={handleMarkAllRead}
-                className="font-mono text-[9px] tracking-widest text-ink-dim uppercase hover:text-ink transition-colors"
+                className="font-mono text-[9px] tracking-widest text-ink-dim uppercase hover:text-ink active:scale-95 active:opacity-70 transition-[color,transform,opacity] duration-[150ms,80ms,80ms]"
               >
                 Marker alle som læst
               </button>

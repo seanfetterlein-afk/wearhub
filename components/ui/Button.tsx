@@ -26,7 +26,7 @@ const sizeClasses: Record<Size, string> = {
 };
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 font-body font-semibold tracking-wider uppercase transition-colors duration-150 disabled:opacity-40 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 font-body font-semibold tracking-wider uppercase transition-colors duration-[80ms] active:scale-[0.98] active:opacity-80 disabled:opacity-40 disabled:pointer-events-none";
 
 export function Button({
   children,

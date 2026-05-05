@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useState } from "react";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
@@ -13,15 +13,27 @@ interface ProductCardProps {
 
 export const ProductCard = memo(function ProductCard({ product, priority }: ProductCardProps) {
   const { id, title, brand, price, imageUrl, favorites, size, condition } = product;
+  const [pressed, setPressed] = useState(false);
 
   return (
     <Link
       href={`/item/${id}`}
       prefetch
-      className="group block"
+      className="group block select-none"
+      onPointerDown={() => setPressed(true)}
+      onPointerUp={() => setPressed(false)}
+      onPointerLeave={() => setPressed(false)}
+      onPointerCancel={() => setPressed(false)}
       style={{ WebkitTapHighlightColor: "transparent" }}
     >
-      <div className="relative aspect-[3/4] border border-black/12 overflow-hidden bg-[#F2F2F2] active:opacity-75 transition-opacity duration-75">
+      <div
+        className="relative aspect-[3/4] border border-black/12 overflow-hidden bg-[#F2F2F2]"
+        style={{
+          opacity: pressed ? 0.75 : 1,
+          transform: pressed ? "scale(0.98)" : "scale(1)",
+          transition: "opacity 80ms ease, transform 80ms ease",
+        }}
+      >
         {imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

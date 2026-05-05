@@ -336,8 +336,15 @@ export function ConversationThread({
                 </div>
               )}
 
-              {/* ── Offer message ─────────────────────────────────────────── */}
-              {msg.messageType === "offer" && msg.offerId ? (
+              {/* ── System message ────────────────────────────────────────── */}
+              {(msg.messageType === "system" || msg.messageType === "order_update") ? (
+                <div className="flex justify-center my-1">
+                  <span className="font-mono text-[9px] tracking-wider text-ink-dim uppercase bg-cream border border-brown/10 px-3 py-1.5 text-center max-w-[85%]">
+                    {msg.text}
+                  </span>
+                </div>
+              ) : /* ── Offer message ──────────────────────────────────────── */
+              msg.messageType === "offer" && msg.offerId ? (
                 <div className={cn(
                   "flex gap-2",
                   isMine ? "justify-end" : "justify-start",

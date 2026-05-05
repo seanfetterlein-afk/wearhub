@@ -2,7 +2,8 @@
 
 import { useState, useRef, useTransition, useEffect } from "react";
 import Link from "next/link";
-import { ShieldCheck, MapPin, Calendar, Star, Pencil, X, Camera } from "lucide-react";
+import { ShieldCheck, MapPin, Calendar, Star, Pencil, X, Camera, Wallet } from "lucide-react";
+import { WalletModal } from "@/components/profile/WalletModal";
 import { Tabs } from "@/components/ui/Tabs";
 import { Avatar } from "@/components/ui/Avatar";
 import { ConditionBadge } from "@/components/ui/Badge";
@@ -45,6 +46,7 @@ export function ProfileClient({ user: initialUser, listings: initialListings, so
   const [isPending, startTransition] = useTransition();
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [walletOpen, setWalletOpen] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const handleDelete = (productId: string) => {
@@ -176,9 +178,15 @@ export function ProfileClient({ user: initialUser, listings: initialListings, so
           <div className="flex flex-col gap-2 shrink-0">
             <button
               onClick={() => setEditing(true)}
-              className="flex items-center gap-1.5 border border-brown px-4 py-2 font-mono text-[11px] tracking-widest text-brown uppercase hover:bg-brown hover:text-cream transition-colors"
+              className="flex items-center gap-1.5 border border-brown px-4 py-2 font-mono text-[11px] tracking-widest text-brown uppercase hover:bg-brown hover:text-cream active:scale-[0.98] active:opacity-80 transition-[colors,transform,opacity] duration-[0ms,80ms,80ms]"
             >
               <Pencil size={11} /> REDIGER PROFIL
+            </button>
+            <button
+              onClick={() => setWalletOpen(true)}
+              className="flex items-center justify-center gap-1.5 border border-brown/20 px-4 py-2 font-mono text-[11px] tracking-widest text-ink-mid uppercase hover:border-brown hover:text-brown active:scale-[0.98] active:opacity-80 transition-[colors,transform,opacity] duration-[0ms,80ms,80ms]"
+            >
+              <Wallet size={11} /> SALDO
             </button>
             <Link
               href="/sell"
@@ -207,6 +215,9 @@ export function ProfileClient({ user: initialUser, listings: initialListings, so
         </div>
       </div>
 
+      {/* Wallet modal */}
+      {walletOpen && <WalletModal onClose={() => setWalletOpen(false)} />}
+
       {/* Edit modal */}
       {editing && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 px-0 sm:px-4">
@@ -226,8 +237,9 @@ export function ProfileClient({ user: initialUser, listings: initialListings, so
               <div className="flex-1 overflow-y-auto px-6 py-5 flex flex-col gap-5">
                 {/* Avatar upload */}
                 <div className="flex flex-col items-center gap-3">
-                  <div
-                    className="relative w-24 h-24 cursor-pointer group"
+                  <button
+                    type="button"
+                    className="relative w-24 h-24 group rounded-full active:scale-95 active:opacity-80 transition-[transform,opacity] duration-[80ms]"
                     onClick={() => fileRef.current?.click()}
                   >
                     {avatarPreview ? (
@@ -243,7 +255,7 @@ export function ProfileClient({ user: initialUser, listings: initialListings, so
                     <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <Camera size={20} className="text-white" />
                     </div>
-                  </div>
+                  </button>
                   <button
                     type="button"
                     onClick={() => fileRef.current?.click()}

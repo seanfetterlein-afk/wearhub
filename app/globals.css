@@ -60,12 +60,13 @@ a, button, [role="button"] {
 
 /* Press feedback on buttons only — not on link/card wrappers */
 button:active {
-  opacity: 0.6;
+  opacity: 0.7;
+  transition: opacity 60ms ease;
 }
 
 /* Hero shop panel overlay button */
 .shop-button {
-  transition: all 0.25s ease;
+  transition: transform 80ms ease, filter 80ms ease, background-color 80ms ease;
   cursor: pointer;
 }
 
@@ -78,7 +79,6 @@ button:active {
   transform: scale(0.97);
   background-color: rgba(255, 255, 255, 0.25);
   filter: brightness(0.95);
-  transition: all 0.1s ease;
 }
 
 .marquee-track {

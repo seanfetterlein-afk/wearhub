@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { Home, Search, Plus, MessageCircle, User } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { isSupabaseConfigured } from "@/lib/supabase/helpers";
-import { cn } from "@/lib/utils";
 
 const items = [
   { label: "Hjem",     href: "/",         icon: Home,          center: false },
@@ -17,8 +16,15 @@ const items = [
 ];
 
 export function BottomNav() {
-  const pathname    = usePathname();
-  const [badge, setBadge] = useState(0);
+  const pathname              = usePathname();
+  const [badge, setBadge]     = useState(0);
+  const [pressed, setPressed] = useState<string | null>(null);
+  const [optimistic, setOptimistic] = useState<string | null>(null);
+
+  // Clear optimistic selection once the real pathname catches up
+  useEffect(() => {
+    setOptimistic(null);
+  }, [pathname]);
 
   useEffect(() => {
     if (!isSupabaseConfigured()) return;
@@ -77,26 +83,46 @@ export function BottomNav() {
     >
       <div className="w-full flex items-center justify-around">
         {items.map(({ label, href, icon: Icon, center }) => {
-          const active =
-            href === "/" ? pathname === "/" : pathname.startsWith(href);
-          const isInbox = href === "/messages";
+          const isActive = optimistic
+            ? optimistic === href
+            : href === "/" ? pathname === "/" : pathname.startsWith(href);
+          const isPressed = pressed === href;
+          const isInbox   = href === "/messages";
 
           return (
             <Link
               key={href}
               href={href}
-              className="flex flex-col items-center justify-center flex-1 h-full gap-1 transition-opacity"
+              onPointerDown={() => { setPressed(href); setOptimistic(href); }}
+              onPointerUp={() => setPressed(null)}
+              onPointerLeave={() => setPressed(null)}
+              onPointerCancel={() => setPressed(null)}
+              className="flex flex-col items-center justify-center flex-1 h-full gap-1 cursor-pointer select-none outline-none focus-visible:outline-none"
+              style={{
+                transform: isPressed ? "scale(0.94)" : "scale(1)",
+                transition: "transform 80ms ease",
+                WebkitTapHighlightColor: "transparent",
+              }}
             >
               {center ? (
-                <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center">
+                <div
+                  className="w-10 h-10 bg-black rounded-full flex items-center justify-center"
+                  style={{
+                    opacity: isPressed ? 0.75 : 1,
+                    transition: "opacity 80ms ease",
+                  }}
+                >
                   <Icon size={18} className="text-white" strokeWidth={2.5} />
                 </div>
               ) : (
                 <div className="relative">
                   <Icon
                     size={22}
-                    strokeWidth={active ? 2.2 : 1.5}
-                    className={active ? "text-black" : "text-[#AAAAAA]"}
+                    strokeWidth={isActive ? 2.2 : 1.5}
+                    style={{
+                      color: isActive || isPressed ? "#000000" : "#AAAAAA",
+                      transition: "color 80ms ease, stroke-width 80ms ease",
+                    }}
                   />
                   {isInbox && badge > 0 && (
                     <span className="absolute -top-1 -right-1 min-w-[14px] h-[14px] bg-red-500 rounded-full border border-white flex items-center justify-center px-0.5">
@@ -108,14 +134,12 @@ export function BottomNav() {
                 </div>
               )}
               <span
-                className={cn(
-                  "text-[10px] tracking-wide font-body",
-                  center
-                    ? "text-black font-medium"
-                    : active
-                      ? "text-black font-semibold"
-                      : "text-[#AAAAAA] font-normal",
-                )}
+                style={{
+                  color: isActive || isPressed ? "#000000" : "#AAAAAA",
+                  fontWeight: isActive || isPressed ? 600 : 400,
+                  transition: "color 80ms ease, font-weight 80ms ease",
+                }}
+                className="text-[10px] tracking-wide font-body"
               >
                 {label}
               </span>

@@ -29,14 +29,17 @@ export function ItemActions({ product, initialSaved }: Props) {
   const [msgPending,   startMsgTransition] = useTransition();
   const [offerPending, setOfferPending]    = useState(false);
 
+  const handleBuy = () => {
+    router.push(`/checkout/${product.id}`);
+  };
+
   const handleFavorite = () => {
-    if (!isSupabaseConfigured()) {
-      setSaved((v) => !v);
-      return;
-    }
+    setSaved((v) => !v);
+    if (!isSupabaseConfigured()) return;
     startTransition(async () => {
       const result = await toggleFavorite(product.id);
       if (result.error) {
+        setSaved((v) => !v);
         router.push(`/login?redirect=/item/${product.id}`);
         return;
       }
@@ -122,16 +125,16 @@ export function ItemActions({ product, initialSaved }: Props) {
       <Button
         size="lg"
         className="w-full text-base tracking-widest shadow-sm"
-        onClick={() => alert("Stripe checkout tilsluttes snart.")}
+        onClick={handleBuy}
       >
         <ShoppingBag size={16} />
-        {t("buyNow")} · {formatPrice(product.price)}
+        {`${t("buyNow")} · ${formatPrice(product.price)}`}
       </Button>
 
       {/* Make Offer toggle */}
       <button
         onClick={() => { setShowOffer((v) => !v); setError(null); }}
-        className="w-full h-12 border border-brown/30 font-mono text-[11px] tracking-widest text-brown uppercase hover:border-brown hover:bg-cream transition-colors flex items-center justify-center gap-2"
+        className="w-full h-12 border border-brown/30 font-mono text-[11px] tracking-widest text-brown uppercase hover:border-brown hover:bg-cream active:scale-[0.98] active:opacity-80 transition-[colors,transform,opacity] duration-[0ms,80ms,80ms] flex items-center justify-center gap-2"
       >
         {t("makeOffer")}
         {showOffer ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
@@ -162,7 +165,7 @@ export function ItemActions({ product, initialSaved }: Props) {
           <button
             onClick={handleOffer}
             disabled={!offerAmount || offerPending}
-            className="h-10 bg-brown text-cream font-mono text-[11px] tracking-widest uppercase hover:bg-brown-deep transition-colors disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center gap-2"
+            className="h-10 bg-brown text-cream font-mono text-[11px] tracking-widest uppercase hover:bg-brown-deep active:scale-[0.98] active:opacity-80 transition-[colors,transform,opacity] duration-[0ms,80ms,80ms] disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center gap-2"
           >
             {offerPending ? (
               <><Loader2 size={13} className="animate-spin" /> SENDER...</>
@@ -182,7 +185,7 @@ export function ItemActions({ product, initialSaved }: Props) {
         <button
           onClick={handleMessage}
           disabled={msgPending}
-          className="h-11 border border-brown/20 font-mono text-[10px] tracking-widest text-ink-mid uppercase hover:border-brown hover:text-brown transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+          className="h-11 border border-brown/20 font-mono text-[10px] tracking-widest text-ink-mid uppercase hover:border-brown hover:text-brown active:scale-[0.98] active:opacity-80 transition-[colors,transform,opacity] duration-[0ms,80ms,80ms] flex items-center justify-center gap-2 disabled:opacity-50"
         >
           {msgPending ? (
             <Loader2 size={13} className="animate-spin" />
@@ -195,7 +198,7 @@ export function ItemActions({ product, initialSaved }: Props) {
         <button
           onClick={handleFavorite}
           disabled={isPending}
-          className="h-11 border border-brown/20 font-mono text-[10px] tracking-widest text-ink-mid uppercase hover:border-brown hover:text-brown transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+          className="h-11 border border-brown/20 font-mono text-[10px] tracking-widest text-ink-mid uppercase hover:border-brown hover:text-brown active:scale-[0.98] active:opacity-80 transition-[colors,transform,opacity] duration-[0ms,80ms,80ms] flex items-center justify-center gap-2 disabled:opacity-50"
         >
           <Heart size={13} className={saved ? "text-brown fill-brown" : ""} />
           {saved ? t("saved") : t("save")}

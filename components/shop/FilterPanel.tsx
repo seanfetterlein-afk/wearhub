@@ -63,7 +63,7 @@ function FilterOption({
     <button
       onClick={onClick}
       className={cn(
-        "w-full text-left px-0 py-1 font-body text-sm transition-colors",
+        "w-full text-left px-0 py-1 font-body text-sm transition-colors active:scale-95 active:opacity-70",
         active ? "text-brown font-semibold" : "text-ink-mid hover:text-ink",
       )}
     >
@@ -93,7 +93,7 @@ export function FilterPanel({ filters, onChange, isDrawer, onClose }: FilterPane
       {isDrawer && (
         <div className="flex items-center justify-between mb-4 pb-4 border-b border-brown/20">
           <span className="font-mono text-[11px] tracking-widest uppercase text-ink">FILTRÉR</span>
-          <button onClick={onClose} className="text-ink-mid hover:text-ink p-1">
+          <button onClick={onClose} className="text-ink-mid hover:text-ink active:scale-90 active:opacity-70 p-1 transition-[transform,opacity] duration-[80ms]">
             <X size={18} />
           </button>
         </div>
@@ -156,7 +156,7 @@ export function FilterPanel({ filters, onChange, isDrawer, onClose }: FilterPane
           <button
             onClick={() => set("size", "ALL")}
             className={cn(
-              "border px-2 py-1 font-mono text-[10px] tracking-wide transition-colors",
+              "border px-2 py-1 font-mono text-[10px] tracking-wide transition-colors active:scale-90 active:opacity-70",
               filters.size === "ALL"
                 ? "border-brown bg-brown text-cream"
                 : "border-brown/20 text-ink-dim hover:border-brown/50",
@@ -169,7 +169,7 @@ export function FilterPanel({ filters, onChange, isDrawer, onClose }: FilterPane
               key={size}
               onClick={() => set("size", size)}
               className={cn(
-                "border px-2 py-1 font-mono text-[10px] tracking-wide transition-colors",
+                "border px-2 py-1 font-mono text-[10px] tracking-wide transition-colors active:scale-90 active:opacity-70",
                 filters.size === size
                   ? "border-brown bg-brown text-cream"
                   : "border-brown/20 text-ink-dim hover:border-brown/50",
@@ -199,7 +199,7 @@ export function FilterPanel({ filters, onChange, isDrawer, onClose }: FilterPane
       {isDrawer && (
         <button
           onClick={onClose}
-          className="mt-6 w-full h-12 bg-brown text-cream font-body font-semibold text-sm tracking-wider uppercase"
+          className="mt-6 w-full h-12 bg-brown text-cream font-body font-semibold text-sm tracking-wider uppercase active:scale-[0.98] active:opacity-80 transition-[transform,opacity] duration-[80ms]"
         >
           VIS RESULTATER
         </button>
