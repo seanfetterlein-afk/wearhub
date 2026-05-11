@@ -33,7 +33,7 @@ export function Navbar() {
       {/* Logo */}
       <Link href="/" className="inline-block mb-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo.png" alt="Nord Studios" className="h-64 w-auto mx-auto" />
+        <img src="/logo.png" alt="Nord Studios" className="w-64 h-auto mx-auto" />
       </Link>
     </header>
   );
