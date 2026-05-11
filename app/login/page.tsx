@@ -137,12 +137,6 @@ function LoginPageInner() {
       <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-6 py-16">
         <div className="w-full max-w-[380px]">
 
-          <div className="flex justify-center mb-10">
-            <Link href="/">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="Nord Studios" className="h-24 w-auto" />
-            </Link>
-          </div>
 
           {/* Mode tabs */}
           {step === "email" && (
