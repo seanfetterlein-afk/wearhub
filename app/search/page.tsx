@@ -38,16 +38,6 @@ export default function SearchPage() {
           ))}
         </div>
 
-        {/* Graffiti image divider */}
-        <div className="mt-10 mb-2">
-          <div className="w-full overflow-hidden rounded-xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/graffiti.png" alt="WearHub graffiti" className="w-full object-cover" />
-          </div>
-          <p className="mt-2 mb-8 text-[7px] font-mono tracking-wider text-ink-dim" style={{ textAlign: "left", marginLeft: 0, paddingLeft: 0 }}>
-            Grafitti af WearHub Logo i Bristol, England.
-          </p>
-        </div>
 
         {/* Collections — swipeable panels, same as homepage */}
         <div className="flex gap-2 overflow-x-auto snap-x snap-mandatory pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -mx-4 px-4">
