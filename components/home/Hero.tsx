@@ -51,25 +51,6 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Editorial headline */}
-      <div className="text-center mt-14 max-w-4xl mx-auto">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/headline.png"
-          alt="Not New Just Next"
-          className="w-full max-w-4xl mx-auto mb-6"
-        />
-        <p className="text-xs text-black leading-relaxed max-w-md mx-auto" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
-          Nord Studios er født i København med en forkærlighed for æstetik, kvalitet og det enkle.
-          <br /><br />
-          Vi skaber et rum, hvor tøj får nyt liv — og hvor gode pieces ikke går til spilde, men videre til den næste.
-          <br /><br />
-          Det handler ikke om mængde, men om valg.<br />
-          Ikke om trends, men om stil.
-          <br /><br />
-          Vi bygger ikke bare en platform — vi bygger en relation til dem, der bruger den. Med fokus på oplevelse, tillid og en ny måde at tænke garderobe på.
-        </p>
-      </div>
     </section>
   );
 }
