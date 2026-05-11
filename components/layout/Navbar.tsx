@@ -32,12 +32,8 @@ export function Navbar() {
 
       {/* Logo */}
       <Link href="/" className="inline-block mb-2">
-        <span
-          className="font-cormorant font-bold italic text-black leading-none"
-          style={{ fontSize: 48, letterSpacing: "-0.02em" }}
-        >
-          Nord Studios
-        </span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo.png" alt="Nord Studios" className="h-20 w-auto mx-auto" />
       </Link>
     </header>
   );
