@@ -54,8 +54,8 @@ export const metadata: Metadata = {
     "Danmarks C2C marketplace for streetwear. Køb, sælg og flex hypede drops, arkiv-gems og grails — handlet peer-to-peer.",
   keywords: ["streetwear", "marketplace", "sneakers", "danmark", "resell"],
   icons: {
-    icon: "/FAVICON.png",
-    apple: "/FAVICON.png",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
   openGraph: {
     title: "Nord Studios — Danmarks streetwear marketplace",
