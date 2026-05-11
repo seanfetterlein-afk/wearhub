@@ -53,13 +53,16 @@ export const metadata: Metadata = {
   description:
     "Danmarks C2C marketplace for streetwear. Køb, sælg og flex hypede drops, arkiv-gems og grails — handlet peer-to-peer.",
   keywords: ["streetwear", "marketplace", "sneakers", "danmark", "resell"],
+  icons: {
+    icon: "/FAVICON.png",
+    apple: "/FAVICON.png",
+  },
   openGraph: {
     title: "Nord Studios — Danmarks streetwear marketplace",
     description: "Køb. Sælg. Flex.",
     locale: "da_DK",
     type: "website",
   },
-  // Lock iOS status bar to white so it never tries to sync with the black splash layer
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
