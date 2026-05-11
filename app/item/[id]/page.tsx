@@ -185,7 +185,7 @@ export default async function ItemPage({ params }: PageProps) {
                 <div className="flex items-center gap-2 bg-cream border border-brown/15 px-4 py-2.5">
                   <ShieldCheck size={16} className="text-brown shrink-0" />
                   <div>
-                    <p className="font-mono text-[10px] tracking-widest text-brown uppercase font-bold">Verificeret af WearHub</p>
+                    <p className="font-mono text-[10px] tracking-widest text-brown uppercase font-bold">Verificeret af Nord Studios</p>
                     <p className="text-ink-dim text-xs mt-0.5">Autentificitet bekræftet. Penge frigives efter levering.</p>
                   </div>
                 </div>

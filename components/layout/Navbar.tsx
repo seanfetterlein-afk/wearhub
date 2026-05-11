@@ -32,8 +32,12 @@ export function Navbar() {
 
       {/* Logo */}
       <Link href="/" className="inline-block mb-2">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo.png" alt="WearHub" className="h-36 w-auto mx-auto" />
+        <span
+          className="font-cormorant font-bold italic text-black leading-none"
+          style={{ fontSize: 48, letterSpacing: "-0.02em" }}
+        >
+          Nord Studios
+        </span>
       </Link>
     </header>
   );

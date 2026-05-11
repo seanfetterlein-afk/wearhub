@@ -38,7 +38,7 @@ export async function GET(
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <title>Fragtlabel — WearHub</title>
+  <title>Fragtlabel — Nord Studios</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: monospace; background: #fff; color: #000; padding: 32px; }
@@ -60,7 +60,7 @@ export async function GET(
 </head>
 <body>
 <div class="label">
-  <div class="logo">WEARHUB</div>
+  <div class="logo">NORD STUDIOS</div>
   <div class="carrier">${shipment.carrier}</div>
 
   <h2>Leveringsadresse</h2>
@@ -90,7 +90,7 @@ export async function GET(
   </p>
 
   <div class="footer">
-    Oprettet ${new Date(shipment.created_at).toLocaleDateString("da-DK")} · WearHub.dk
+    Oprettet ${new Date(shipment.created_at).toLocaleDateString("da-DK")} · Nord Studios.dk
   </div>
 </div>
 <script>window.onload = () => window.print();</script>

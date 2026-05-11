@@ -24,7 +24,8 @@ const jetbrainsMono = JetBrains_Mono({
 const cormorant = Cormorant({
   subsets: ["latin"],
   variable: "--font-cormorant",
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -46,14 +47,14 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "WearHub — Danmarks streetwear marketplace",
-    template: "%s | WearHub",
+    default: "Nord Studios — Danmarks streetwear marketplace",
+    template: "%s | Nord Studios",
   },
   description:
     "Danmarks C2C marketplace for streetwear. Køb, sælg og flex hypede drops, arkiv-gems og grails — handlet peer-to-peer.",
   keywords: ["streetwear", "marketplace", "sneakers", "danmark", "resell"],
   openGraph: {
-    title: "WearHub — Danmarks streetwear marketplace",
+    title: "Nord Studios — Danmarks streetwear marketplace",
     description: "Køb. Sælg. Flex.",
     locale: "da_DK",
     type: "website",

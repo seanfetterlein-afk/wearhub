@@ -40,7 +40,7 @@ export const translations = {
     condition:     "Stand",
     category:      "Kategori",
     description:   "BESKRIVELSE",
-    verifiedTitle: "Verificeret af WearHub",
+    verifiedTitle: "Verificeret af Nord Studios",
     verifiedDesc:  "Autentificitet bekræftet. Penge frigives efter levering.",
     paymentNote:   "Sikker betaling via Stripe · Pengene frigives ved levering · Returfrist 3 dage",
 
@@ -92,7 +92,7 @@ export const translations = {
     condition:     "Condition",
     category:      "Category",
     description:   "DESCRIPTION",
-    verifiedTitle: "Verified by WearHub",
+    verifiedTitle: "Verified by Nord Studios",
     verifiedDesc:  "Authenticity confirmed. Funds released upon delivery.",
     paymentNote:   "Secure payment via Stripe · Funds released on delivery · 3-day return policy",
 

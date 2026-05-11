@@ -508,7 +508,7 @@ export function ConversationThread({
         </div>
 
         <p className="font-mono text-[9px] tracking-wider text-ink-dim mt-2">
-          Del aldrig betalingsoplysninger i beskeder · WearHub verificerer alle transaktioner
+          Del aldrig betalingsoplysninger i beskeder · Nord Studios verificerer alle transaktioner
         </p>
       </div>
     </>

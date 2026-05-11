@@ -108,7 +108,7 @@ export function WalletModal({ onClose }: Props) {
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-brown/10 shrink-0">
           <div>
-            <p className="font-mono text-[9px] tracking-widest text-ink-dim uppercase">WEARHUB</p>
+            <p className="font-mono text-[9px] tracking-widest text-ink-dim uppercase">NORD STUDIOS</p>
             <h2
               className="font-display font-semibold text-brown text-xl"
               style={{ letterSpacing: "-0.02em" }}

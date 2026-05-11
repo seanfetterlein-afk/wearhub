@@ -140,7 +140,7 @@ function LoginPageInner() {
           <div className="flex justify-center mb-10">
             <Link href="/">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="WearHub" className="h-24 w-auto" />
+              <img src="/logo.png" alt="Nord Studios" className="h-24 w-auto" />
             </Link>
           </div>
 
@@ -156,7 +156,7 @@ function LoginPageInner() {
             {step === "email" ? (
               <>
                 <h1 className="font-display font-semibold text-black text-2xl mb-1" style={{ letterSpacing: "-0.03em" }}>
-                  {mode === "login" ? "Velkommen tilbage." : "Bliv en del af WearHub."}
+                  {mode === "login" ? "Velkommen tilbage." : "Bliv en del af Nord Studios."}
                 </h1>
                 <p className="text-[#AAAAAA] text-sm mb-7">
                   {mode === "login"

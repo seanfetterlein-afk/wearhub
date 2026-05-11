@@ -39,7 +39,7 @@ export function Footer() {
           {/* Brand blurb */}
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-white.png" alt="WearHub" className="h-32 w-auto" />
+            <img src="/logo-white.png" alt="Nord Studios" className="h-32 w-auto" />
             <p className="text-[13px] opacity-70 mt-4 max-w-xs leading-relaxed">
               Danmarks C2C marketplace for streetwear.
               <br />
@@ -71,7 +71,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-6 border-t border-cream/10 flex flex-col sm:flex-row justify-between gap-2 font-mono text-2xs tracking-widest opacity-50">
-          <span>© 2026 WEARHUB · KØBENHAVN</span>
+          <span>© 2026 NORD STUDIOS · KØBENHAVN</span>
           <span>VOL.001 · VINTER</span>
         </div>
       </div>

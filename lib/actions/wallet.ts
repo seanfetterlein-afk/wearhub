@@ -241,7 +241,7 @@ export async function withdrawBalance(): Promise<{ success?: boolean; error?: st
       amount:      amount * 100, // DKK → ører
       currency:    "dkk",
       destination: profile.stripe_connect_account_id,
-      description: "WearHub saldo udbetaling",
+      description: "Nord Studios saldo udbetaling",
     });
 
     // 3. Record successful payout

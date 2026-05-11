@@ -44,10 +44,10 @@ export function LogoLockup({ size = "md", inverse = false }: LogoLockupProps) {
 
       {/* Wordmark */}
       <span
-        className={`font-display font-bold leading-none ${text}`}
-        style={{ color, letterSpacing: "-0.03em" }}
+        className={`font-cormorant font-bold italic leading-none ${text}`}
+        style={{ color, letterSpacing: "-0.02em" }}
       >
-        WearHub
+        Nord Studios
       </span>
     </div>
   );

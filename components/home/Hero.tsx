@@ -60,7 +60,7 @@ export function Hero() {
           className="w-full max-w-4xl mx-auto mb-6"
         />
         <p className="text-xs text-black leading-relaxed max-w-md mx-auto" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
-          WearHub er født i København med en forkærlighed for æstetik, kvalitet og det enkle.
+          Nord Studios er født i København med en forkærlighed for æstetik, kvalitet og det enkle.
           <br /><br />
           Vi skaber et rum, hvor tøj får nyt liv — og hvor gode pieces ikke går til spilde, men videre til den næste.
           <br /><br />

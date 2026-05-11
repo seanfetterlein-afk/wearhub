@@ -398,7 +398,7 @@ export function OrderStatusCard({ initialOrder, initialShipment, myId, isSeller 
       <p className="font-mono text-[9px] tracking-wider text-ink-dim text-center">
         {order.itemPrice
           ? `Vare ${formatPrice(order.itemPrice)} + fragt ${formatPrice(order.shippingPrice ?? 0)} = ${formatPrice(order.amount)} betalt · ${formatPrice(order.payout)} til sælger`
-          : `${formatPrice(order.amount)} betalt · ${formatPrice(order.payout)} til sælger efter WearHub gebyr`
+          : `${formatPrice(order.amount)} betalt · ${formatPrice(order.payout)} til sælger efter Nord Studios gebyr`
         }
       </p>
     </div>

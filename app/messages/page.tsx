@@ -92,7 +92,7 @@ export default async function IndbakkePage({ searchParams }: PageProps) {
         {/* Header */}
         <div className="px-4 sm:px-6 pt-8 pb-4">
           <p className="font-mono text-2xs tracking-editorial text-ink-dim uppercase mb-1">
-            WEARHUB
+            NORD STUDIOS
           </p>
           <h1
             className="font-display font-semibold text-brown leading-none"

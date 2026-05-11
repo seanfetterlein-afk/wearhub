@@ -32,7 +32,7 @@ export function Editorial() {
               </em>
             </h2>
             <p className="mt-6 opacity-75 text-[15px] leading-relaxed max-w-[440px]">
-              Ingen shipping-scam. Ingen fake. WearHub verificerer hver seller
+              Ingen shipping-scam. Ingen fake. Nord Studios verificerer hver seller
               og hver transaktion.
             </p>
             <div className="mt-8">
